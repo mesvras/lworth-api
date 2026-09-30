@@ -10,19 +10,12 @@ requires-python = ">=3.13"
 dependencies = [
     "fastapi[standard]>=0.141.1",
     "pydantic>=2.13.5",
+    "pydantic-settings>=2.15.0",
 ]
 
-[project.scripts]
-lworth = "lworth:main"
-
-[build-system]
-requires = ["uv_build>=0.12.20,<0.13.0"]
-build-backend = "uv_build"
-
 [tool.pytest.ini_options]
-pythonpath = ["src/lworth"]
+pythonpath = ["."]
 
 [tool.pyright]
 venvPath = "."
 venv = ".venv"
-extraPaths = ["src"]
