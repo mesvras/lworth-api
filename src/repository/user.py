@@ -1,4 +1,4 @@
-from lworth.models import User
+from src.models import User
 
 
 users = [

@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-from lworth.exception_handlers import register_exception_handlers
-from lworth.routers import user
+
+from src.base.exception_handlers import register_exception_handlers
+from src.routers import user
 
 app = FastAPI()
 

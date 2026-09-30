@@ -1,9 +1,9 @@
 from fastapi import Depends
 
-from lworth.base.exceptions import AlreadyExistsError, NotFoundError
-from lworth.models import User
-from lworth.schemas import UserCreate
-from lworth.repository.user import UserRepository
+from src.base.exceptions import AlreadyExistsError, NotFoundError
+from src.models import User
+from src.repository.user import UserRepository
+from src.schemas import UserCreate
 
 
 class UserService:

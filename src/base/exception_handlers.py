@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from lworth.exceptions import AppError
+from src.base.exceptions import AppError
 
 
 def register_exception_handlers(app: FastAPI) -> None:

@@ -1,11 +1,13 @@
-from fastapi import APIRouter, Depends
-from lworth.schemas import UserCreate, UserOut
-from lworth.service.user import UserService
+from fastapi import APIRouter, Depends, status
+from fastapi.responses import JSONResponse
+
+from src.schemas import UserCreate, UserOut
+from src.service.user import UserService
 
 router = APIRouter(prefix="/user", tags=["user"])
 
 
-@router.get("/", response_model=list[UserOut])
+@router.get("", response_model=list[UserOut])
 async def get_all(service: UserService = Depends()):
     return await service.get_all()
 
@@ -15,6 +17,7 @@ async def get_by_id(user_id: int, service: UserService = Depends()):
     return await service.get_by_id(user_id)
 
 
-@router.post("/", response_model=UserOut)
+@router.post("", response_model=UserOut)
 async def create_user(user: UserCreate, service: UserService = Depends()):
-    return await service.create(user)
+    user = await service.create(user)
+    return JSONResponse(status_code=status.HTTP_201_CREATED, content=user)
