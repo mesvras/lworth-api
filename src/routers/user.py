@@ -1,5 +1,4 @@
-from fastapi import APIRouter, Depends, status
-from fastapi.responses import JSONResponse
+from fastapi import APIRouter, Depends, Response, status
 
 from src.schemas import UserCreate, UserOut
 from src.service.user import UserService
@@ -18,6 +17,9 @@ async def get_by_id(user_id: int, service: UserService = Depends()):
 
 
 @router.post("", response_model=UserOut)
-async def create_user(user: UserCreate, service: UserService = Depends()):
-    user = await service.create(user)
-    return JSONResponse(status_code=status.HTTP_201_CREATED, content=user)
+async def create_user(
+    user: UserCreate, response: Response, service: UserService = Depends()
+):
+    created = await service.create(user)
+    response.status_code = status.HTTP_201_CREATED
+    return created
